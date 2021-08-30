@@ -40,3 +40,17 @@ func InsertUser(user *User) (err error) {
 
 	return err
 }
+
+func CheckLogin(username string, password string) (err error) {
+	var user User
+	err := db.Where("username = ?", username).First(&user).Error
+	if err != nil {
+		return err
+	}
+
+	if encryptPassword(password) != user.Password {
+		return CodeInvalidPassword
+	}
+
+	return nil
+}

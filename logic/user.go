@@ -23,3 +23,7 @@ func SignUp(p *models.ParamSignUp) (err error) {
 	}
 	return mysql.InsertUser(user)
 }
+
+func Login(p *models.ParamLogin) (err error) {
+	
+}
