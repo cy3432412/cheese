@@ -3,6 +3,7 @@ package logic
 import (
 	"cheese/dao/mysql"
 	"cheese/models"
+	"cheese/pkg/jwt"
 	"cheese/pkg/snowflake"
 )
 
@@ -24,6 +25,18 @@ func SignUp(p *models.ParamSignUp) (err error) {
 	return mysql.InsertUser(user)
 }
 
-func Login(p *models.ParamLogin) (err error) {
-	
+func Login(p *models.ParamLogin) (user *mysql.User, err error) {
+	user = &mysql.User{
+		Username: p.Username,
+		Password: p.Password,
+	}
+	if err = mysql.CheckLogin(user); err != nil {
+		return nil, err
+	}
+	token, err := jwt.GenToken(user.UserID, user.Username)
+	if err != nil {
+		return nil, err
+	}
+	user.Token = token
+	return
 }

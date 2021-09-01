@@ -14,6 +14,7 @@ type User struct {
 	Password string `json:"password" gorm:"column:password;type:varchar(64);not null"`
 	Email    string `json:"email" gorm:"column:email;type:varchar(64)"`
 	Gender   int32  `json:"gender" gorm:"column:gender;type:tinyint(4);not null;default:0"`
+	Token    string
 }
 
 // 存放对用户数据的增删改查
@@ -41,15 +42,15 @@ func InsertUser(user *User) (err error) {
 	return err
 }
 
-func CheckLogin(username string, password string) (err error) {
-	var user User
-	err := db.Where("username = ?", username).First(&user).Error
+func CheckLogin(user *User) (err error) {
+	oPassword := user.Password
+	err = db.Where("username = ?", user.Username).First(&user).Error
 	if err != nil {
 		return err
 	}
 
-	if encryptPassword(password) != user.Password {
-		return CodeInvalidPassword
+	if encryptPassword(oPassword) != user.Password {
+		return ErrorInvalidPassword
 	}
 
 	return nil
