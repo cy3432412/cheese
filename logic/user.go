@@ -25,18 +25,17 @@ func SignUp(p *models.ParamSignUp) (err error) {
 	return mysql.InsertUser(user)
 }
 
-func Login(p *models.ParamLogin) (user *mysql.User, err error) {
+func Login(p *models.ParamLogin) (user *mysql.User, token string, err error) {
 	user = &mysql.User{
 		Username: p.Username,
 		Password: p.Password,
 	}
 	if err = mysql.CheckLogin(user); err != nil {
-		return nil, err
+		return nil, "", err
 	}
-	token, err := jwt.GenToken(user.UserID, user.Username)
+	token, err = jwt.GenToken(user.UserID, user.Username)
 	if err != nil {
-		return nil, err
+		return nil, "", err
 	}
-	user.Token = token
 	return
 }

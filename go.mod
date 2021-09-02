@@ -14,6 +14,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/jmoiron/sqlx v1.3.4 // indirect
+	github.com/juju/ratelimit v1.0.1 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible // indirect
 	github.com/sliveryou/grom v1.0.3 // indirect
 	github.com/spf13/cobra v1.2.1 // indirect

@@ -3,6 +3,7 @@ package router
 import (
 	"cheese/controller"
 	"cheese/logger"
+	"cheese/middlewares"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -20,6 +21,17 @@ func SetupRouter(mode string) *gin.Engine {
 	v1.POST("/signup", controller.SignUpHandler)
 	// 登录
 	v1.POST("/login", controller.LoginHandler)
+	v1.Use(middlewares.JWTAuthMiddleware()) // 应用JWT认证中间件
+	{
+		//community
+		v1.GET("/community", controller.GetCommunityHandler)
+		v1.GET("/community/:id", controller.GetDetailHandler)
+		//post
+		v1.POST("/post", controller.CreatePostHandler)
+		v1.GET("/getOrderList", controller.GetOrderListHandler)
+		v1.GET("/getPostList", controller.GetPostListHandler)
+		v1.GET("/post/:id", controller.GetPostDetailHandler)
+	}
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{

@@ -8,19 +8,19 @@ import (
 	"cheese/setting"
 
 	"fmt"
-	"os"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("need config file.eg: bluebell config.yaml")
-		return
-	}
+	//if len(os.Args) < 2 {
+	//	fmt.Println("need config file.eg: bluebell config.yaml")
+	//	return
+	//}
 	// 加载配置
-	if err := setting.Init(os.Args[1]); err != nil {
+	if err := setting.Init("conf/config.yaml"); err != nil {
 		fmt.Printf("load config failed, err:%v\n", err)
 		return
 	}
+
 	if err := logger.Init(setting.Conf.LogConfig, setting.Conf.Mode); err != nil {
 		fmt.Printf("init logger failed, err:%v\n", err)
 		return

@@ -14,7 +14,6 @@ type User struct {
 	Password string `json:"password" gorm:"column:password;type:varchar(64);not null"`
 	Email    string `json:"email" gorm:"column:email;type:varchar(64)"`
 	Gender   int32  `json:"gender" gorm:"column:gender;type:tinyint(4);not null;default:0"`
-	Token    string
 }
 
 // 存放对用户数据的增删改查
