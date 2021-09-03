@@ -1,0 +1,6 @@
+{"level":"INFO","time":"2021-09-03T14:29:20.122+0800","caller":"logger/logger.go:43","msg":"init logger success"}
+{"level":"INFO","time":"2021-09-03T14:30:55.914+0800","caller":"logger/logger.go:76","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"axios/0.21.1","errors":"","cost":0.0805964}
+{"level":"INFO","time":"2021-09-03T14:31:39.212+0800","caller":"logger/logger.go:76","msg":"/api/v1/community/2","status":200,"method":"POST","path":"/api/v1/community/2","query":"","ip":"127.0.0.1","user-agent":"axios/0.21.1","errors":"","cost":0}
+{"level":"ERROR","time":"2021-09-03T14:31:53.667+0800","caller":"controller/community.go:31","msg":"logic get single community error","error":"Error 1054: Unknown column 'community.deleted_at' in 'where clause'"}
+{"level":"INFO","time":"2021-09-03T14:31:53.668+0800","caller":"logger/logger.go:76","msg":"/api/v1/community/2","status":200,"method":"GET","path":"/api/v1/community/2","query":"","ip":"127.0.0.1","user-agent":"axios/0.21.1","errors":"","cost":0.0047258}
+{"level":"INFO","time":"2021-09-03T14:38:06.707+0800","caller":"logger/logger.go:76","msg":"/api/v1/community/2","status":200,"method":"GET","path":"/api/v1/community/2","query":"","ip":"127.0.0.1","user-agent":"axios/0.21.1","errors":"","cost":0.0106845}
