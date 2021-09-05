@@ -2,6 +2,7 @@ package main
 
 import (
 	"cheese/dao/mysql"
+	"cheese/dao/redis"
 	"cheese/logger"
 	"cheese/pkg/snowflake"
 	"cheese/router"
@@ -30,11 +31,11 @@ func main() {
 		return
 	}
 	defer mysql.Close() // 程序退出关闭数据库连接
-	//if err := redis.Init(setting.Conf.RedisConfig); err != nil {
-	//	fmt.Printf("init redis failed, err:%v\n", err)
-	//	return
-	//}
-	//defer redis.Close()
+	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
+		fmt.Printf("init redis failed, err:%v\n", err)
+		return
+	}
+	defer redis.Close()
 
 	if err := snowflake.Init(setting.Conf.StartTime, setting.Conf.MachineID); err != nil {
 		fmt.Printf("init snowflake failed, err:%v\n", err)

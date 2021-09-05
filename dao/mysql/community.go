@@ -4,7 +4,7 @@ import "time"
 
 type Community struct {
 	ID            int       `json:"id" gorm:"primaryKey;column:id;type:int(11) auto_increment"`
-	CommunityID   uint      `json:"community_id" gorm:"column:community_id;type:int(10) unsigned;not null;uniqueIndex:idx_community_id"`
+	CommunityID   int       `json:"community_id" gorm:"column:community_id;type:int(10) unsigned;not null;uniqueIndex:idx_community_id"`
 	CommunityName string    `json:"community_name" gorm:"column:community_name;type:varchar(128);not null;uniqueIndex:idx_community_name"`
 	Introduction  string    `json:"introduction" gorm:"column:introduction;type:varchar(256);not null"`
 	CreatedAt     time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP"`

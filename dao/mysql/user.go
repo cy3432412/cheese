@@ -54,3 +54,10 @@ func CheckLogin(user *User) (err error) {
 
 	return nil
 }
+func GetUserById(userID int64) (user User, err error) {
+	err = db.Where("user_id = ?", userID).First(&user).Error
+	if err != nil {
+		return
+	}
+	return user, err
+}
