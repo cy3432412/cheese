@@ -8,13 +8,6 @@ import (
 	"time"
 )
 
-func VoteForPost() {
-	err := client.ZScore("abc", "123")
-	if err != nil {
-		return
-	}
-}
-
 // 推荐阅读
 // 基于用户投票的相关算法：http://www.ruanyifeng.com/blog/algorithm/
 
